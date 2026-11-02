@@ -26,6 +26,18 @@ nothing is downloaded when the add-on starts.
 The agent id is generated once and kept in `/data/agent_id`, so Dockhand sees the same
 agent across restarts. Stacks Dockhand deploys here are stored in `/data/stacks`.
 
+## Troubleshooting
+
+- **The add-on stops right after starting.** The log says the token is missing: set `token`
+  on the Configuration tab.
+- **Dockhand cannot reach the agent.** Check that protection mode is off, the add-on is running,
+  and port 2376 on the Home Assistant host is reachable from the Dockhand host.
+- **Dockhand reports unauthorized.** The token in Dockhand and in the add-on differ; set the same
+  value in both.
+- **Container recreates time out.** Raise `request_timeout`.
+
+Set `log_level: debug` for Hawser's own request log.
+
 ## Credits
 
 [Hawser](https://github.com/Finsys/hawser) and its logo are by Finsys (MIT).
