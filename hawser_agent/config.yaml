@@ -1,0 +1,25 @@
+---
+name: Hawser Agent
+version: "0.2.53"
+slug: hawser_agent
+description: Exposes this host's Docker to a remote Dockhand instance
+url: https://github.com/nicandris/ha-hawser-agent
+arch:
+  - aarch64
+  - amd64
+init: false
+docker_api: true
+full_access: true
+ports:
+  2376/tcp: 2376
+ports_description:
+  2376/tcp: Hawser agent API (Dockhand connects here, Standard mode)
+options:
+  token: ""
+  log_level: info
+schema:
+  # Shared secret Dockhand sends; Hawser refuses to listen on the LAN without one.
+  token: password
+  log_level: list(debug|info|warn|error)
+  # Raise when a container recreate on slow storage exceeds 30 s.
+  request_timeout: int(5,600)?

@@ -1,0 +1,30 @@
+#!/command/with-contenv bashio
+# shellcheck shell=bash
+# Runs Hawser in Standard mode: it listens on 2376 and Dockhand connects to it.
+set -e
+
+if ! bashio::config.has_value 'token'; then
+    bashio::exit.nok "Set a token on the Configuration tab; Hawser will not listen on the LAN without one."
+fi
+export TOKEN
+TOKEN=$(bashio::config 'token')
+export LOG_LEVEL
+LOG_LEVEL=$(bashio::config 'log_level')
+if bashio::config.has_value 'request_timeout'; then
+    export REQUEST_TIMEOUT
+    REQUEST_TIMEOUT=$(bashio::config 'request_timeout')
+fi
+
+# Stack files Dockhand deploys here, and a stable agent id (Hawser otherwise
+# makes a new UUID on every start), both live in the add-on's persistent /data.
+export STACKS_DIR=/data/stacks
+mkdir -p "${STACKS_DIR}"
+if [[ ! -s /data/agent_id ]]; then
+    cat /proc/sys/kernel/random/uuid > /data/agent_id
+fi
+export AGENT_ID
+AGENT_ID=$(cat /data/agent_id)
+export AGENT_NAME="home-assistant"
+
+bashio::log.info "Starting Hawser $(hawser --version 2>/dev/null || true) on port 2376..."
+exec hawser

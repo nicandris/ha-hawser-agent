@@ -1,0 +1,15 @@
+version: 2
+updates:
+  # Watches the `FROM ghcr.io/finsys/hawser:<version>` pin in the Dockerfile. The
+  # Home Assistant base image lives in build.yaml, which Dependabot cannot
+  # parse — bump that one by hand.
+  - package-ecosystem: "docker"
+    directory: "/hawser_agent"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5

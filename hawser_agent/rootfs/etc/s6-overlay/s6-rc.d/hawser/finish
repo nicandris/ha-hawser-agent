@@ -1,0 +1,8 @@
+#!/command/with-contenv bashio
+# shellcheck shell=bash
+# Halt the whole add-on if Hawser dies, instead of leaving an empty container.
+
+if [[ "${1}" -ne 0 ]] && [[ "${1}" -ne 256 ]]; then
+    bashio::log.warning "Hawser exited with code ${1}, halting add-on"
+    exec /run/s6/basedir/bin/halt
+fi
