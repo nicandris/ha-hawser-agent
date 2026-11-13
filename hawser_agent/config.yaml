@@ -1,6 +1,6 @@
 ---
 name: Hawser Agent
-version: "0.2.53"
+version: "0.2.53.1"
 slug: hawser_agent
 description: Exposes this host's Docker to a remote Dockhand instance
 url: https://github.com/nicandris/ha-hawser-agent
