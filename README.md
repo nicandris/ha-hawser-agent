@@ -17,8 +17,8 @@ elsewhere can manage the host's Docker containers, images, volumes and networks.
   `ghcr.io/finsys/hawser` image at the tag pinned in [`Dockerfile`](hawser_agent/Dockerfile),
   onto the [Home Assistant base image](https://github.com/hassio-addons/app-base). The add-on
   makes no network calls of its own when it starts.
-- **Versioned with Hawser.** Add-on `0.2.53` ships Hawser `0.2.53`; a fourth component
-  (`0.2.53.1`) marks a rebuild on a newer base image.
+- **Versioned with Hawser.** Add-on `0.2.54` ships Hawser `0.2.54`; a fourth component
+  (`0.2.54.1`) marks a rebuild on a newer base image.
 - **Standard mode.** Hawser listens on port 2376 and Dockhand connects to it over your LAN, the
   same model as a Portainer agent on 9001.
 - **Stable identity.** The agent id is generated once and kept in the add-on's `/data`, so
