@@ -2,7 +2,7 @@ ARG BUILD_FROM
 
 # Hawser publishes a static Go binary; take it from the official image at a pinned
 # version instead of downloading at runtime.
-FROM ghcr.io/finsys/hawser:0.2.53 AS hawser
+FROM ghcr.io/finsys/hawser:0.2.54 AS hawser
 
 FROM ${BUILD_FROM}
 
